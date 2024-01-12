@@ -2,6 +2,10 @@ name: Build and deploy
 
 on: [workflow_dispatch, push]
 
+permissions:
+      id-token: write
+      contents: read
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -32,7 +36,9 @@ jobs:
     - name: 'Login via Azure CLI'
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
     - name: Project deploy
       uses: Azure/functions-action@v1
