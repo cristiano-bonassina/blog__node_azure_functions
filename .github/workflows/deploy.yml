@@ -45,4 +45,4 @@ jobs:
       id: fa
       with:
         app-name: ${{ vars.AZURE_FUNCTION_APP_NAME }}
-        package: 'publish'
+        package: '.'
